@@ -7,12 +7,14 @@ const verifyRoutes = require('./routes/verifyRoutes');
 const downloadRoutes = require('./routes/downloadRoutes');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 
 app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use('/api', uploadRoutes);
 app.use('/api', verifyRoutes);
@@ -28,9 +30,7 @@ app.get('/', (req, res) => {
     }
   });
 });
-
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
 
-module.exports = app;

@@ -41,7 +41,7 @@ export default function AccessPage() {
         setGettingLocation(false);
         
         try {
-          const response = await fetch('/api/verify', {
+          const response = await fetch('http://localhost:8080/api/verify', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -86,7 +86,7 @@ export default function AccessPage() {
     setError('');
 
     try {
-      const response = await fetch(`/api/download/${accessId}`);
+      const response = await fetch(`http://localhost:8080/api/download/${accessId}`);
 
       if (!response.ok) {
         const data = await response.json();
